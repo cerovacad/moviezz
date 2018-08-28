@@ -62,7 +62,7 @@ class MenuAppBar extends React.Component {
               color="inherit"
               className={classes.flex}
             >
-              MovieZapp
+              MoviesApp
             </Typography>
             <div>
               <Menu

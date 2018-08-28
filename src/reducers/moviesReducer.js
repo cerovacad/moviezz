@@ -25,6 +25,18 @@ const defState = [
     created_at: "123",
     updated_at: "123",
     url: "http"
+  },
+  {
+    id: 3,
+    title: "Terminator",
+    description:
+      "Reason hope abstract justice superiority virtues enlightenment against prejudice transvaluation society salvation self god. ",
+    genre: "Fantasy/Science",
+    release_year: "2009",
+    length: "2h 42m",
+    created_at: "123",
+    updated_at: "123",
+    url: "http"
   }
 ];
 
@@ -32,8 +44,7 @@ export default handleActions(
   {
     [fetchMovies]: (state, { payload }) => {
       return state;
-    },
-    
+    }
   },
   defState
 );

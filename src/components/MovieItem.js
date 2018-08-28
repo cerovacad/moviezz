@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 const styles = {
   card: {
     margin: "1rem auto",
-    maxWidth: 425
+    maxWidth: 400
   },
   link: {
     cursor: "pointer",
