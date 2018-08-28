@@ -6,6 +6,7 @@ import MoviesList from "./containers/MoviesList";
 import NotFound from "./components/NotFound";
 import MovieFull from "./components/MovieFull";
 import ActorFull from "./components/ActorFull";
+import './index.css'
 
 const App = () => (
   <Router>
@@ -13,13 +14,15 @@ const App = () => (
       <div>
         <Nav />
       </div>
-      <Switch>
-        <Route path="/actors" component={ActorsList} exact />
-        <Route path="/movies" component={MoviesList} exact />
-        <Route path="/movies/:id" component={MovieFull} exact />
-        <Route path="/actors/:id" component={ActorFull} exact />
-        <Route component={NotFound} />
-      </Switch>
+      <div className='main'>
+        <Switch>
+          <Route path="/actors" component={ActorsList} exact />
+          <Route path="/movies" component={MoviesList} exact />
+          <Route path="/movies/:id" component={MovieFull} exact />
+          <Route path="/actors/:id" component={ActorFull} exact />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
     </div>
   </Router>
 );
