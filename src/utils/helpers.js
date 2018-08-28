@@ -1,11 +1,17 @@
-import moment from 'moment'
+import moment from "moment";
 
 export const dashToSpace = str => {
-  const m = moment(str, 'YYYY-MM-DD').toDate();
-  console.log(m)
-  // const s =  string.split("").map(l => {
-  //   return l === "-" ? " " : l;
-  // });
-  // return s.join('')
-  return(str)
+  return moment(moment(str, "YYYY-MM-DD").toDate()).format("MMM Do YYYY");
+};
+
+export const findById = (arr, id) => {
+  let myItem = false;
+  arr.map(item => {
+    if (item.id === parseInt(id, 10)) {
+      myItem = item;
+      return item;
+    }
+    return item;
+  });
+  return myItem;
 };

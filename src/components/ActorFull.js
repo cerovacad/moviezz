@@ -12,7 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { dashToSpace } from "../utils/helpers";
+import { dashToSpace, findById } from "../utils/helpers";
+import NotFound from "./NotFound";
 
 const styles = theme => ({
   card: {
@@ -41,13 +42,8 @@ class RecipeReviewCard extends React.Component {
   };
 
   componentDidMount() {
-    this.props.actors.map(actor => {
-      if (actor.id === parseInt(this.props.match.params.id, 10)) {
-        this.setState({ actor });
-        return actor;
-      }
-      return actor;
-    });
+    const { actors, match } = this.props;
+    this.setState({ actor: findById(actors, match.params.id) });
   }
 
   render() {
@@ -91,7 +87,7 @@ class RecipeReviewCard extends React.Component {
             </CardActions>
           </Card>
         ) : (
-          ""
+          <NotFound />
         )}
       </div>
     );
