@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const styles = {
   card: {
     width: 200,
-    margin: "1rem auto"
+    margin: "1rem auto",
   },
   media: {
     height: 340

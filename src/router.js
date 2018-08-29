@@ -7,6 +7,8 @@ import NotFound from "./components/NotFound";
 import MovieFull from "./components/MovieFull";
 import ActorFull from "./components/ActorFull";
 import './index.css'
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 const App = () => (
   <Router>
@@ -16,6 +18,8 @@ const App = () => (
       </div>
       <div className='main'>
         <Switch>
+          <Route path="/" component={Login} exact />
+          <Route path="/signup" component={SignUp} exact />
           <Route path="/actors" component={ActorsList} exact />
           <Route path="/movies" component={MoviesList} exact />
           <Route path="/movies/:id" component={MovieFull} exact />

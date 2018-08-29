@@ -9,6 +9,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import { auth } from "../actions/authActions";
+import { Redirect } from "react-router-dom";
 
 const styles = {
   root: {
@@ -30,7 +34,8 @@ const styles = {
 
 class MenuAppBar extends React.Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
+    redirect: null
   };
 
   handleMenu = event => {
@@ -41,22 +46,32 @@ class MenuAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+  handleLogout = () => {
+    this.props.auth(null);
+    this.setState({ redirect: true });
+  };
+
   render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
+    const { classes, isAuth } = this.props;
+    const { anchorEl, redirect } = this.state;
     const open = Boolean(anchorEl);
 
     return (
       <div className={classes.root}>
+      {redirect && <Redirect to="/"/>}
         <AppBar color="default" position="static">
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-            >
-              <MenuIcon onClick={this.handleMenu} />
-            </IconButton>
+            {isAuth ? (
+              <IconButton
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Menu"
+              >
+                <MenuIcon onClick={this.handleMenu} />
+              </IconButton>
+            ) : (
+              ""
+            )}
             <Typography
               variant="title"
               color="inherit"
@@ -64,6 +79,7 @@ class MenuAppBar extends React.Component {
             >
               MoviesApp
             </Typography>
+            {isAuth && <Button onClick={this.handleLogout} color="inherit">Logout</Button>}
             <div>
               <Menu
                 disableAutoFocus={true}
@@ -99,4 +115,13 @@ MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MenuAppBar);
+const mapStateToProps = state => {
+  return {
+    isAuth: state.isAuth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { auth }
+)(withStyles(styles)(MenuAppBar));

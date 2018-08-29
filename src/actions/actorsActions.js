@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import axios from 'axios'
+// import axios from 'axios'
 
 export const fetchActors = createAction("FETCH_ACTORS");
 
