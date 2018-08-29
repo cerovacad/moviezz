@@ -5,15 +5,14 @@ import { withStyles } from "@material-ui/core/styles";
 import { connect } from 'react-redux';
 
 const styles = {
-  // card: {
-  //   display: "flex",
-  //   flexWrap: "wrap"
-  // }
+  card: {
+    display: "flex",
+    flexDirection: "column",
+  }
 };
 
 const Actors = ({ classes, actors }) => (
-  <div>
-  {/* {console.log(actors)} */}
+  <div className={classes.card}>
     {actors.map(actor => (
       <ActorItem key={actor.id} actorInfo={actor} />
     ))}

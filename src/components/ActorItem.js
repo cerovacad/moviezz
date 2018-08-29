@@ -11,15 +11,21 @@ const styles = {
   card: {
     width: 200,
     margin: "1rem auto",
+    // backgroundColor: "rgba(0,0,0,0.5)",
   },
   media: {
-    height: 340
+    height: 340,
   },
   link: {
     cursor: "pointer",
     textDecoration: "none",
-    color: "#6B6B6B"
+    // color: "rgba(255,255,255, 0.5)",
   },
+  content: {
+    padding: 0,
+    textAlign: "center",
+    height: "0.5rem",
+  }
 };
 
 function MediaCard(props) {
@@ -33,8 +39,8 @@ function MediaCard(props) {
           image="/img/actors/actor.jpg"
           title="Contemplative Reptile"
         />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h1">
+        <CardContent className={classes.content}>
+          <Typography className={classes.link} gutterBottom variant="headline" component="h1">
             {`${first_name} ${last_name}`}
           </Typography>
         </CardContent>

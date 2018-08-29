@@ -13,9 +13,10 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 2,
     margin: "2rem auto",
     width: 350,
-    height: 230
+    height: 270,
   },
   container: {
+    // alignText: "center",
     display: "flex",
     flexDirection: "column"
   },
@@ -23,20 +24,54 @@ const styles = theme => ({
     margin: theme.spacing.unit
   },
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit
   },
   link: {
     color: "inherit",
     textAlign: "center",
     marginTop: "1rem",
     fontSize: "0.75rem"
+  },
+  err: {
+    textAlign: "center",
+    padding: "0.25rem",
+    color: "#E57373"
   }
-
 });
 
 class Inputs extends React.Component {
+  state = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+    err: null
+  };
+
+  handleEmailChange = e => {
+    this.setState({ email: e.target.value });
+  };
+  handlePasswordChange = e => {
+    this.setState({ password: e.target.value });
+  };
+  handleConfirmPasswordChange = e => {
+    this.setState({ confirmPassword: e.target.value });
+  };
+  handleSignUp = () => {
+    if (this.state.password === this.state.confirmPassword) {
+      console.log(this.state);
+      this.props.history.push("/");
+    } else {
+      this.setState({
+        password: "",
+        confirmPassword: "",
+        err: true
+      });
+    }
+  };
+
   render() {
     const { classes } = this.props;
+    const { email, password, confirmPassword, err } = this.state;
     return (
       <Paper className={classes.root} elevation={1}>
         <div className={classes.container}>
@@ -46,27 +81,42 @@ class Inputs extends React.Component {
             inputProps={{
               "aria-label": "Description"
             }}
+            value={email}
+            onChange={this.handleEmailChange}
           />
           <Input
             placeholder="Password"
             className={classes.input}
-            error={false}
+            error={err}
             inputProps={{
               "aria-label": "Description"
             }}
+            type="password"
+            value={password}
+            onChange={this.handlePasswordChange}
           />
           <Input
             placeholder="Repeat password"
             className={classes.input}
-            error={false}
+            error={err}
             inputProps={{
               "aria-label": "Description"
             }}
+            type="password"
+            value={confirmPassword}
+            onChange={this.handleConfirmPasswordChange}
           />
-          <Button variant="contained" className={classes.button}>
+          {err && <div className={classes.err} >Passwords do not match. Try again.</div>}
+          <Button
+            onClick={this.handleSignUp}
+            variant="contained"
+            className={classes.button}
+          >
             Sign Up
           </Button>
-          <Link className={classes.link} to="/login">Already have an account?</Link>
+          <Link className={classes.link} to="/login">
+            Already have an account?
+          </Link>
         </div>
       </Paper>
     );

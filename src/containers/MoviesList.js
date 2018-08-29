@@ -7,7 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = {
   flex: {
     display: "flex",
-    flexWrap: "wrap"
+    flexDirection: "column",
   }
 };
 
